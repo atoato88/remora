@@ -60,6 +60,11 @@ def resolve_discovery_url():
     if 'discovery_url' not in env.etcd:
         execute(discovery_url)
 
+def etcd_initial_cluster():
+    servers = ["ubuntu-etcd{index:02d}=https://{server}:2380".format(index=i+1, server=s) 
+                for i, s in enumerate(env.roledefs['etcd'])]
+    servers = ','.join(servers)
+    return ['export ETCD_INITIAL_CLUSTER="{0}"'.format(servers)]
 
 @task
 @roles('etcd')
@@ -67,7 +72,7 @@ def server():
     require('stage')
     resolve_discovery_url()
     helpers.recreate_remote_temp_dir('etcd')
-    utils.install_default_env('etcd', 'etcd')
+    utils.install_default_env('etcd', 'etcd', etcd_initial_cluster())
     utils.install_scripts('etcd')
     utils.configure('etcd')
 

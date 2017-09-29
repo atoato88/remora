@@ -28,7 +28,7 @@ spec:
     command:
     - /usr/local/bin/etcd
     - --name=${_HOSTNAME}
-    - --discovery=${ETCD_DISCOVERY_URL}
+    - --iinitial-cluster=${ETCD_INITIAL_CLUSTER}
     - --advertise-client-urls=https://${NODE_IP}:2379
     - --initial-advertise-peer-urls=https://${NODE_IP}:2380
     - --listen-client-urls=https://${NODE_IP}:2379,http://127.0.0.1:2379
