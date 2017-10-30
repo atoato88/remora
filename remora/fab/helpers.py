@@ -146,6 +146,12 @@ def run_script(script_name, *options, local_env=[]):
             local_env
         )
 
+        print('----------')
+        with open(default_env, 'rt') as f:
+          for line in f:
+            print(line, end="")
+        print('----------')
+
         local(
             'source {0} && bash {1}/{2} {3}'.format(
                 default_env,
