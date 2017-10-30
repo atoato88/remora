@@ -18,8 +18,14 @@ haproxy:
   keepalived_use_unicast: "true"
 
 kubernetes:
-  version: v1.7.4
-  hyperkube_image_repo: gcr.io/google_containers/hyperkube
+  version:
+    amd64: v1.7.4
+    arm: v1.7.4
+    arm64: v1.7.4
+  hyperkube_image_repo:
+    amd64: hogehoge.io
+    arm: hogehoge.io
+    arm64: hogehoge.io
   cluster_cidr: 10.244.0.0/16
   node_cidr_mask_size: 24
   service_ip_range: 10.254.0.0/24

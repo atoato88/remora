@@ -15,6 +15,20 @@ workers: &workers
   - 192.168.1.122
   - 192.168.1.123
 
+hosts:
+  192.168.1.111: 
+    arch: arm
+  192.168.1.112: 
+    arch: arm
+  192.168.1.113: 
+    arch: arm
+  192.168.1.121: 
+    arch: arm64
+  192.168.1.122: 
+    arch: arm64
+  192.168.1.123: 
+    arch: arm64
+
 roledefs:
   bootstrap:
   - 192.168.1.111
