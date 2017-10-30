@@ -1,0 +1,47 @@
+---
+# Username of target VMs
+# If you use Ubuntu, change below line to like `user: ubuntu`.
+user: system
+
+local:
+  assets_dir: "~/.kube/assets"
+
+masters: &masters
+  - 192.168.1.111
+  - 192.168.1.112
+  - 192.168.1.113
+workers: &workers
+  - 192.168.1.121
+  - 192.168.1.122
+  - 192.168.1.123
+
+arch:
+  arm:
+    - 192.168.1.111
+    - 192.168.1.112
+    - 192.168.1.113
+  arm64:
+    - 192.168.1.121
+    - 192.168.1.122
+    - 192.168.1.123
+
+roledefs:
+  bootstrap:
+  - 192.168.1.111
+  etcd: *masters
+  master: *masters
+  worker: *workers
+
+kubernetes:
+  # Public kubernetes service address
+  public_service_ip: 192.168.1.101
+#  version: v1.8.1
+#  hyperkube_image_repo: gcr.io/google_containers/hyperkube-arm64
+
+#etcd:
+#  version: "v3.2.9-arm64"
+#  image_repo: "quay.io/coreos/etcd"
+
+#flannel:
+#  version: v0.7.1-arm64
+#  image_repo: quay.io/coreos/flannel

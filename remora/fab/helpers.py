@@ -62,6 +62,12 @@ def setup_etcd_proxy_roles(hosts, roledefs):
         etcd_proxy = set(hosts) - set(roledefs.get('etcd', []))
         roledefs['etcd-proxy'] = list(etcd_proxy)
 
+def setup_kubernetes_container_image(env):
+    print('-------------------------------------' + str(type(env.host)))
+    env['configs']['kubernetes']['hyperkube_image_repo']='###############################'
+
+def setup_container_image(env):
+    setup_kubernetes_container_image(env)
 
 def construct_env(env_data, default_env_data=None):
     if not default_env_data:
@@ -78,7 +84,7 @@ def construct_env(env_data, default_env_data=None):
         env['roledefs'] = roledefs
         hosts = setup_hosts(roledefs)
         setup_etcd_proxy_roles(hosts, roledefs)
-
+    setup_container_image(env)
 
 def create_env_tasks(namespace):
     for config in glob.glob(constants.configs):

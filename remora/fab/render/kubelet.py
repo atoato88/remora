@@ -36,6 +36,8 @@ def render(script_name, *options):
 
 
 def master_env_list():
+    print(str(env))
+    print(str(env.configs.get('arch', [])))
     if env.host in env.roledefs.get('master', []):
         return ['export KUBE_IS_MASTER="1"']
     return ['export KUBE_IS_MASTER="0"']
