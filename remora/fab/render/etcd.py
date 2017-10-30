@@ -29,8 +29,8 @@ def etcd_env_list():
     ]
     etcd_initial_cluster = ','.join(etcd_initial_cluster)
     return [
-        'export ETCD_NODE_NAME={}'.format(env.etcd_hosts[env.host]),
-        'export ETCD_INITIAL_CLUSTER={}'.format(etcd_initial_cluster),
+        'export ETCD_NODE_NAME="{}"'.format(env.etcd_hosts[env.host]),
+        'export ETCD_INITIAL_CLUSTER="{}"'.format(etcd_initial_cluster),
     ] + helpers.generate_local_env()
 
 
