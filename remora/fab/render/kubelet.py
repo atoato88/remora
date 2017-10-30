@@ -52,6 +52,7 @@ def all():
 @task
 def kubelet():
     require('stage')
+    helpers.setup_kubernetes_container_image(env)
     render(
         'kubelet/render.sh',
         env.host
