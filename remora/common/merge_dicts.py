@@ -30,7 +30,7 @@ def merge_dicts(dict1, dict2):
             if len(not_str_list2) == 0:
                 return result
             else:
-                return result.append(not_str_list2)
+                return result + not_str_list2
         else:
             for i in not_str_list1:
                 m = i

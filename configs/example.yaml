@@ -17,8 +17,6 @@ node_groups:
           - "node-role.kubernetes.io/master"
         taints:
           - "node-role.kubernetes.io/master=:NoSchedule"
-        work1:
-          - "work1-list"
         image:
           repository: "gcr.io/google_containers/hyperkube-arm64"
     nodes:
@@ -37,6 +35,8 @@ node_groups:
           - sub-label1: 
             - subsub-label1: 
               - "subsub1-1-arm64"
+          - sub-label1:
+            - "hogehoge"
     nodes:
     - "192.168.1.131"
   worker_arm:
