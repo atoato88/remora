@@ -36,7 +36,7 @@ node_groups:
             - subsub-label1: 
               - "subsub1-1-arm64"
           - sub-label1:
-            - "hogehoge"
+            - "sub1-1-arm64"
     nodes:
     - "192.168.1.131"
   worker_arm:

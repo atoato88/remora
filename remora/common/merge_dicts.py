@@ -65,9 +65,9 @@ if __name__ == '__main__':
     #print('---')
     dict1 = yaml_dict['node_groups']['worker_arm64']['spec']
     dict2 = yaml_dict['spec']
-    #print(dict1)
+    print(dict1)
     #print('---')
-    #print(dict2)
+    print(dict2)
     #print('---')
     result=merge_dicts(dict1, dict2)
     print(result)
