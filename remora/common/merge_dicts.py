@@ -41,22 +41,25 @@ def merge_dicts(dict1, dict2):
         work3 = [e for e in list2 if isinstance(e, str)]
         work4 = [e for e in list2 if not isinstance(e, str)]
         #print(work1)
-        #print(work2)
         #print(work3)
         #print(work4)
 
         work5 = list(set(work1+work3))
         #print(work5)
 
-        #if len(work2) == 0:
-        #    print("pass")
-        #    work5.append(work4)
-        #else:
-        for i in work2:
-            m = i
-            for j in work4:
-                m = merge_dicts(i, j)
-            work5.append(m)
+        if len(work2) == 0:
+            #print("pass")
+            #work5.append(work4)
+            #m = {}
+            #for j in work4:
+            #    m = merge_dicts(m, j)
+            work5.append(work4)
+        else:
+            for i in work2:
+                m = i
+                for j in work4:
+                    m = merge_dicts(i, j)
+                work5.append(m)
 
         return work5
 
@@ -104,7 +107,7 @@ if __name__ == '__main__':
     #print('---')
     #print(yaml_dict)
     #print('---')
-    dict1 = yaml_dict['node_groups']['master_arm64']['spec']
+    dict1 = yaml_dict['node_groups']['worker_arm64']['spec']
     dict2 = yaml_dict['spec']
     #print(dict1)
     #print('---')

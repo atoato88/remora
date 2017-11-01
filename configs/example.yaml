@@ -1,22 +1,5 @@
 ---
 node_groups:
-  worker:
-    nodes:
-    - "192.168.1.121"
-  worker_arm64:
-    spec:
-      kubernetes:
-        image:
-          repository: "gcr.io/google_containers/hyperkube-arm64"
-    nodes:
-    - "192.168.1.131"
-  worker_arm:
-    spec:
-      kubernetes:
-        image:
-          repository: "gcr.io/google_containers/hyperkube-arm"
-    nodes:
-    - "192.168.1.141"
   master:
     spec:
       kubernetes:
@@ -53,6 +36,28 @@ node_groups:
           repository: "gcr.io/google_containers/hyperkube-arm64"
     nodes:
     - "192.168.1.113"
+  worker:
+    nodes:
+    - "192.168.1.121"
+  worker_arm64:
+    spec:
+      kubernetes:
+        image:
+          repository: "gcr.io/google_containers/hyperkube-arm64"
+        labels:
+          - "node-role.kubernetes.io/master-defaultxxxx"
+          - sam1:
+            - samsam1:
+              - "hogehoge1-arm64"
+    nodes:
+    - "192.168.1.131"
+  worker_arm:
+    spec:
+      kubernetes:
+        image:
+          repository: "gcr.io/google_containers/hyperkube-arm"
+    nodes:
+    - "192.168.1.141"
 
 spec:
   kubernetes:
@@ -69,8 +74,10 @@ spec:
         - samsam1:
           - "hogehoge1"
           - "hogehoge2"
-      - sam1: 
+      - sam2: 
         - "sam1-val-default2"
+        - samsam2:
+          - "hogehoge3"
     work1:
       - "work1-list-default"
     work22: "work2-default"
