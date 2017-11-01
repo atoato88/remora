@@ -1,26 +1,5 @@
 ---
 node_groups:
-  master:
-    spec:
-      kubernetes:
-        labels:
-          - "node-role.kubernetes.io/master"
-        taints:
-          - "node-role.kubernetes.io/master=:NoSchedule"
-    nodes:
-    - "192.168.1.111"
-    - "192.168.1.112"
-  master_arm64:
-    spec:
-      kubernetes:
-        labels:
-          - "node-role.kubernetes.io/master"
-        taints:
-          - "node-role.kubernetes.io/master=:NoSchedule"
-        image:
-          repository: "gcr.io/google_containers/hyperkube-arm64"
-    nodes:
-    - "192.168.1.113"
   worker:
     nodes:
     - "192.168.1.121"
@@ -38,10 +17,60 @@ node_groups:
           repository: "gcr.io/google_containers/hyperkube-arm"
     nodes:
     - "192.168.1.141"
+  master:
+    spec:
+      kubernetes:
+        labels:
+          - "node-role.kubernetes.io/master"
+        taints:
+          - "node-role.kubernetes.io/master=:NoSchedule"
+    nodes:
+    - "192.168.1.111"
+    - "192.168.1.112"
+  master_arm64:
+    spec:
+      kubernetes:
+        labels:
+          - "node-role.kubernetes.io/master"
+          - "node-role.kubernetes.io/master2"
+          - sam2: 
+              "sam2-val"
+            sam1: 
+              - "sam1-val"
+          - sam4: 
+              "sam2-val"
+            sam5: 
+              - "sam1-val"
+          - sam1: 
+            - "sam1-val-default"
+            - samsam1:
+              - "hoge"
+        taints:
+          - "node-role.kubernetes.io/master=:NoSchedule"
+        work1:
+          - "work1-list"
+        image:
+          repository: "gcr.io/google_containers/hyperkube-arm64"
+    nodes:
+    - "192.168.1.113"
 
 spec:
   kubernetes:
     image:
-      repository: "gcr.io/google_containers/hyperkube"
+      repository: "gcr.io/google_containers/hyperkube-default"
       tag: "v1.8.2"
       pullPolicy: "Always"
+    labels:
+      - "node-role.kubernetes.io/master-default"
+      - "node-role.kubernetes.io/master"
+      - sam1: 
+        - "sam1-val-default"
+        - "sam1-val-default-hogehoge"
+        - samsam1:
+          - "hogehoge1"
+          - "hogehoge2"
+      - sam1: 
+        - "sam1-val-default2"
+    work1:
+      - "work1-list-default"
+    work22: "work2-default"
