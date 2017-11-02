@@ -12,7 +12,6 @@
 #    under the License.
 
 import yaml
-import sys # for debug
 
 def merge_dicts(dict1, dict2):
     """Recursively merges dict2 into dict1"""
@@ -24,7 +23,7 @@ def merge_dicts(dict1, dict2):
         str_list2 = [e for e in list2 if isinstance(e, str)]
         not_str_list2 = [e for e in list2 if not isinstance(e, str)]
 
-        result = list(set(str_list1+str_list2))
+        result = sorted(list(set(str_list1+str_list2)))
 
         if len(not_str_list1) == 0:
             if len(not_str_list2) == 0:
@@ -52,25 +51,3 @@ def merge_dicts(dict1, dict2):
             dict1[k] = dict2[k]
     return dict1
 
-
-if __name__ == '__main__':
-    file_path = sys.argv[1]
-    dict1 = {}
-    dict2 = {}
-    yaml_dict = {}
-    with open(file_path, 'rt') as f:
-      yaml_dict = yaml.load(f)
-    #print('---')
-    #print(yaml_dict)
-    #print('---')
-    dict1 = yaml_dict['node_groups']['worker_arm64']['spec']
-    dict2 = yaml_dict['spec']
-    print(dict1)
-    #print('---')
-    print(dict2)
-    #print('---')
-    result=merge_dicts(dict1, dict2)
-    print(result)
-    #print('---')
-
-    
